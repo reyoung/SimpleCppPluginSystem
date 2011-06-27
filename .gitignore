@@ -49,3 +49,5 @@ DebugToolsForLinux/mainApplication/*moc*
 DebugToolsForLinux/mainApplication/*.o
 DebugToolsForLinux/subproject/court/*moc*
 DebugToolsForLinux/subproject/court/*.o
+*.user
+*.ncb
