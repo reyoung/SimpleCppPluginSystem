@@ -3,7 +3,7 @@
 #include <map>
 
 using namespace std;
-
+//! 辅助的一个结构体，保存Loader的指针和引用次数
 struct AUX_STRUCT{
 	int	refcount;
 	PluginLoaderPrivate*	 data;
@@ -12,18 +12,22 @@ struct AUX_STRUCT{
 	{
 	}
 };
+//! 文件名和AUX_STRUCT的映射
 static map<string,AUX_STRUCT> LoaderPool;
-
+//! 程序退出时，清空所有的LoaderPool;
 static void CleanLoaderPool(){
 	for (map<string,AUX_STRUCT>::iterator it = LoaderPool.begin();it!=LoaderPool.end();++it)
 	{
-		delete it->second.data;
+		if(it->second.data)
+			delete it->second.data;
 	}
 }
+//! 注册程序退出时的回调函数
 static int RegestExitFunc(){
 	atexit(CleanLoaderPool);
 	return 0;
 }
+//! 执行注册
 static int __InitValue = RegestExitFunc();
 
 PluginLoaderPrivate* PluginLoaderPrivate::findOrCreate( const string& fn )
