@@ -175,11 +175,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ini.c"
+				>
+			</File>
+			<File
 				RelativePath=".\PluginLoader.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\PluginLoader_Win32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginSpec.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginSpecLoader.cpp"
 				>
 			</File>
 		</Filter>
@@ -197,6 +209,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ini.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Plugin.h"
 				>
 			</File>
@@ -206,6 +222,14 @@
 			</File>
 			<File
 				RelativePath=".\PluginLoader_Win32.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginSpec.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginSpecLoader.h"
 				>
 			</File>
 		</Filter>
