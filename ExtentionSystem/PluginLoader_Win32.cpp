@@ -81,10 +81,12 @@ bool PluginLoaderPrivate::unuse()
 	}else{
 		AUX_STRUCT& temp = LoaderPool[this->filename];
 		--temp.refcount;
-		if(!temp.refcount){	//! 没有人在引用了
-			LoaderPool.erase(LoaderPool.find(this->filename));  // 将容器中的引用删除
-			delete this; // 删除自己
-		}
+		// 即使Loader没人引用了，其中的数据结构，可能仍然会被引用，所以，不需要删除
+		// 程序退出后，一并完全删除。
+		//if(!temp.refcount){	//! 没有人在引用了
+		//	LoaderPool.erase(LoaderPool.find(this->filename));  // 将容器中的引用删除
+		//	delete this; // 删除自己
+		//}
 		return true;
 	}
 }
