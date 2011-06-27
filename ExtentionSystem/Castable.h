@@ -8,6 +8,6 @@
 class ExtentionSystem_DLL_API Castable
 {
 public:
-	Castable(void);
-	virtual ~Castable(void);
+    Castable(void);
+    virtual ~Castable(void);
 };

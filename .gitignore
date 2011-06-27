@@ -1,6 +1,6 @@
 *~
 *swp
-
+*.layout
 src/linux_project_file/*.o
 src/linux_project_file/moc*.cpp
 src/linux_project_file/Riobot

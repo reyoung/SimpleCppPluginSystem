@@ -2,11 +2,11 @@
 
 PluginLoaderPrivate* PluginLoaderPrivate::findOrCreate( const string& fn )
 {
-	return 0;
+    return 0;
 }
 
 PluginLoaderPrivate::PluginLoaderPrivate()
-:pHnd(0)
+    :pHnd(0)
 {
 }
 
@@ -17,20 +17,20 @@ PluginLoaderPrivate::~PluginLoaderPrivate()
 
 bool PluginLoaderPrivate::load()
 {
-	return false;
+    return false;
 }
 
 bool PluginLoaderPrivate::isLoaded() const
 {
-	return false;
+    return false;
 }
 
 Castable* PluginLoaderPrivate::getInstance() const
 {
-	return 0;
+    return 0;
 }
 
 bool PluginLoaderPrivate::unuse()
 {
-	return false;
+    return false;
 }
