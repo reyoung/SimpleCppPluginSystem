@@ -1,8 +1,18 @@
 #include "PluginLoader_Win32.h"
-
+#include "Castable.h"
 #include <map>
-
+#include <sstream>
+#include <climits>
 using namespace std;
+#ifndef  PATH_MAX
+#define PATH_MAX 512
+#endif
+
+#define VERSION_GETTER	"__get__plugin__version"
+#define INSTANCE_GETTER "__get__plugin__instance"
+
+
+
 //! 辅助的一个结构体，保存Loader的指针和引用次数
 struct AUX_STRUCT{
 	int	refcount;
@@ -61,17 +71,56 @@ PluginLoaderPrivate::~PluginLoaderPrivate()
 
 bool PluginLoaderPrivate::load()
 {
-    return false;
+#ifdef UNICODE
+	string& orig = this->filename;
+	size_t origsize = strlen(orig.c_str()) + 1;
+	size_t convertedChars = 0;
+	wchar_t* wcstring= new wchar_t[PATH_MAX];
+	mbstowcs_s(&convertedChars, wcstring, origsize, orig.c_str(), _TRUNCATE);
+	pHnd = LoadLibrary(wcstring);
+	delete [] wcstring;
+#else
+	pHnd = LoadLibrary(this->filename.c_str());
+#endif
+
+	return pHnd!=NULL;
 }
 
 bool PluginLoaderPrivate::isLoaded() const
 {
-    return false;
+    return pHnd!=NULL;
 }
 
-Castable* PluginLoaderPrivate::getInstance() const
+Castable* PluginLoaderPrivate::getInstance() 
 {
-    return 0;
+	typedef int (*VersionFunc)();
+	if(!isLoaded()||!load()){
+		//! Failed to load
+		return 0;
+	}
+	VersionFunc vf = (VersionFunc) GetProcAddress(this->pHnd,VERSION_GETTER);
+	if(vf){
+		int version = vf();
+		switch(version){
+		case 0:
+			{
+				typedef Castable*  (*InstanceFunc)();
+				InstanceFunc func = (InstanceFunc )GetProcAddress(pHnd,INSTANCE_GETTER);
+				if(func){
+					return func();
+				}else{
+					//! Fail to load
+					return 0;
+				}
+			}
+		default:
+			//! Fail to load
+			return 0;
+		}
+	}else{
+		//! Failed to load. Cannot Find VERSION_GETTER
+		return 0;
+	}
 }
 
 bool PluginLoaderPrivate::unuse()

@@ -1,3 +1,8 @@
 A simple and reliable Extension System by pure C++
 
 一个简单可靠的插件系统，使用纯C++编写，注重可移植性
+
+目录结构:
+ExtentionSystem 是插件系统的主体部分
+Main是测试用的Main文件
+PluginExample是测试用的Plugin

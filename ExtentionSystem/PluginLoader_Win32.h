@@ -43,5 +43,5 @@ public:
     //!  获得一个新的Plugin的主类。
     //! \method   getInstance
     //! \return   Castable*
-    Castable*  getInstance()const;
+    Castable*  getInstance();
 };
