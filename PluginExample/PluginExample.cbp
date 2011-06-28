@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="..\Debug\libPluginExample" prefix_auto="1" extension_auto="1" />
+				<Option output="..\Debug\plugins\PluginExample" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="..\Debug" />
 				<Option object_output="obj\Debug\" />
 				<Option type="3" />
@@ -23,6 +23,9 @@
 					<Add library="ExtentionSystem" />
 					<Add directory="..\DEBUG\" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="PostBuild.bat" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="bin\Release\libPluginExample" prefix_auto="1" extension_auto="1" />
@@ -45,6 +48,7 @@
 		</Compiler>
 		<Unit filename="PluginExample.cpp" />
 		<Unit filename="PluginExample.h" />
+		<Unit filename="PluginExample.ini" />
 		<Unit filename="global.h" />
 		<Extensions>
 			<code_completion />

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <ExtentionSystem/IPlugin.h>
 #include <ExtentionSystem/PluginSpec.h>
+#include <ExtentionSystem/PluginManager.h>
 #include <cassert>
 using namespace std;
-int main(int argc,char** argv){
+void testSpec(int argc,char** argv){
 	PluginSpec spec("plugins\\PluginExample.ini");
 	cout<<spec.name()<<endl;
 	cout<<spec.version()<<endl;
@@ -15,7 +16,7 @@ int main(int argc,char** argv){
 		cout<<dep[i].name<<" "<<dep[i].version<<endl;
 	}
 	cout<<spec.isEnabled()<<endl;
-	
+
 	IPlugin* plugin = spec.getPlugin();
 	if (plugin)
 	{
@@ -23,5 +24,11 @@ int main(int argc,char** argv){
 	}
 	delete plugin;
 	system("pause");
+}
+
+
+int main(int argc,char** argv){
+	std::vector<PluginSpec* > plugins = PluginManager::getAllPluginSpec("plugins");
+	PluginManager::resolve(&plugins);
 	return 0;
 }

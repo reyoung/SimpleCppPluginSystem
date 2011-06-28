@@ -33,7 +33,7 @@ IPlugin* PluginSpec::getPlugin() const
 	path+=m_name;
 	PluginLoader loader;
 	loader.setFileName(path);
-	bool ok = loader.load();
+	loader.load();
 	Castable* result = loader.newInstance();
 	IPlugin* retv =  dynamic_cast<IPlugin* >(result);
 	return retv;

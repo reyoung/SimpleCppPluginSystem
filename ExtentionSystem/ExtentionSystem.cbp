@@ -39,12 +39,24 @@
 		</Compiler>
 		<Unit filename="Castable.cpp" />
 		<Unit filename="Castable.h" />
+		<Unit filename="IPlugin.cpp" />
+		<Unit filename="IPlugin.h" />
 		<Unit filename="Plugin.h" />
 		<Unit filename="PluginLoader.cpp" />
 		<Unit filename="PluginLoader.h" />
 		<Unit filename="PluginLoader_Win32.cpp" />
 		<Unit filename="PluginLoader_Win32.h" />
+		<Unit filename="PluginManager.cpp" />
+		<Unit filename="PluginManager.h" />
+		<Unit filename="PluginSpec.cpp" />
+		<Unit filename="PluginSpec.h" />
+		<Unit filename="PluginSpecLoader.cpp" />
+		<Unit filename="PluginSpecLoader.h" />
 		<Unit filename="global.h" />
+		<Unit filename="ini.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ini.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

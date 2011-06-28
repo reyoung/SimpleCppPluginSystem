@@ -1,0 +1,1 @@
+copy PluginExample.ini ..\Debug\plugins\ /y

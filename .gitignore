@@ -51,3 +51,4 @@ DebugToolsForLinux/subproject/court/*moc*
 DebugToolsForLinux/subproject/court/*.o
 *.user
 *.ncb
+*.depend
