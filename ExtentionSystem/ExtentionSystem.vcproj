@@ -179,11 +179,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IPlugin.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PluginLoader.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\PluginLoader_Win32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginManager.cpp"
 				>
 			</File>
 			<File
@@ -213,6 +221,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IPlugin.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Plugin.h"
 				>
 			</File>
@@ -222,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\PluginLoader_Win32.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PluginManager.h"
 				>
 			</File>
 			<File

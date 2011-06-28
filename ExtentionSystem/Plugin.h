@@ -1,6 +1,6 @@
 #include "global.h"
 #include "Castable.h"
-
+#include "IPlugin.h"
 #define DECLARE_GET_INSTANCE(Class)\
 		EXTERN_C DLL_EXPORT Castable*  __get__plugin__instance(){\
 			return new Class();\

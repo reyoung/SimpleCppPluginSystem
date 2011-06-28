@@ -1,6 +1,6 @@
 #pragma once
 #include "global.h"
-#include "Castable.h"
+#include "IPlugin.h"
 #include <string>
 #include <vector>
 
@@ -14,6 +14,9 @@ public:
 	enum State {Invalid,Read};
 	PluginSpec(const std::string filename);
 	virtual ~PluginSpec(void);
+
+	IPlugin* getPlugin()const;
+
 	inline std::string name()const{
 		return m_name;
 	}
@@ -38,6 +41,7 @@ public:
 	}
 
 private:
+	std::string m_filename;
 	std::string m_name;
 	std::string m_version;
 	std::string m_vendor;

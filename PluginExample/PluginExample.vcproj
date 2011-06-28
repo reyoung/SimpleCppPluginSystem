@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\plugins"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
@@ -86,6 +86,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy PluginExample.ini $(SolutionDir)\Debug\plugins /y"
 			/>
 		</Configuration>
 		<Configuration
@@ -196,6 +197,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath=".\PluginExample.ini"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -3,6 +3,9 @@
 #include <map>
 #include <sstream>
 #include <climits>
+#include <iostream>
+#include <string.h>
+#include <Shlwapi.h>
 using namespace std;
 #ifndef  PATH_MAX
 #define PATH_MAX 512
@@ -73,12 +76,33 @@ bool PluginLoaderPrivate::load()
 {
 #ifdef UNICODE
 	string& orig = this->filename;
+	
 	size_t origsize = strlen(orig.c_str()) + 1;
 	size_t convertedChars = 0;
-	wchar_t* wcstring= new wchar_t[PATH_MAX];
+	wchar_t* wcstring= new wchar_t[PATH_MAX+1];
 	mbstowcs_s(&convertedChars, wcstring, origsize, orig.c_str(), _TRUNCATE);
-	pHnd = LoadLibrary(wcstring);
+	wchar_t* retv = new wchar_t[PATH_MAX+1];
+	GetModuleFileNameW(NULL,retv,PATH_MAX+1);
+	for (int i=wcslen(retv)-1;i>=0;--i)
+	{
+		if (retv[i]=='\\')
+		{
+			++i;
+			wchar_t* temp = &retv[i];
+			wchar_t* temp2 = wcstring;
+			while(*temp++=*temp2++);
+			--temp;
+			*temp++='.';
+			*temp++='d';
+			*temp++='l';
+			*temp++='l';
+			*temp++='\0';
+			break;
+		}
+	}
+	pHnd = LoadLibrary(retv);
 	delete [] wcstring;
+	delete[] retv;
 #else
 	pHnd = LoadLibrary(this->filename.c_str());
 #endif
