@@ -30,7 +30,7 @@ public:
 private:
 	static PluginManager* m_manager;
 	std::map<IPlugin* ,PluginSpec* > m_plugins;
-public://! For Test Only
+//public://! For Test Only
 
 	//! 获得一个目录下所有的PluginSpec，包括子目录
 	//! \method   getAllPluginSpec

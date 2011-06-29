@@ -37,7 +37,7 @@ int PluginSpecLoader::handler( void* user, const char* section, const char* name
 
 void PluginSpecLoader::ParseDependency( PluginSpec * self, const char* desc )
 {
-	PluginSpec::Dependency dep;
+	PluginSpecDependency dep;
 	int flag= 0;
 	for (size_t i=0;i<strlen(desc);++i)
 	{

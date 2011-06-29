@@ -10,7 +10,7 @@ void testSpec(int argc,char** argv){
 	cout<<spec.version()<<endl;
 	cout<<spec.vender()<<endl;
 	cout<<spec.license()<<endl;
-	vector<PluginSpec::Dependency> dep = spec.dependency();
+	vector<PluginSpecDependency> dep = spec.dependency();
 	for (int i=0;i<dep.size();++i)
 	{
 		cout<<dep[i].name<<" "<<dep[i].version<<endl;
@@ -28,7 +28,5 @@ void testSpec(int argc,char** argv){
 
 
 int main(int argc,char** argv){
-	std::vector<PluginSpec* > plugins = PluginManager::getAllPluginSpec("plugins");
-	PluginManager::resolve(&plugins);
 	return 0;
 }

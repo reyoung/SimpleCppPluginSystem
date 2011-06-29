@@ -7,13 +7,14 @@
 *	\abstract Plugin的描述类，存有依赖关系，作者，等等
 *	\note
 */
+struct DLL_EXPORT PluginSpecDependency{
+	std::string name;
+	std::string version;
+};
 class DLL_EXPORT PluginSpec : public Castable
 {
 public:
-	struct DLL_EXPORT Dependency{
-		std::string name;
-		std::string version;
-	};
+
 	enum State {Invalid,Read};
 	
 	//! 初始化描述，传入一个配置文件名，ini文件，带扩展名
@@ -52,7 +53,7 @@ public:
 	//! 插件的依赖
 	//! \method   dependency
 	//! \return   std::vector<Dependency>  一个数组，每一项均是以来的插件名和版本号
-	inline std::vector<Dependency> dependency()const{
+	inline std::vector<PluginSpecDependency> dependency()const{
 		return m_dependency;
 	}
 
@@ -85,6 +86,6 @@ private:
 	std::string m_license;
 	std::string m_category;
 	bool			m_enabled;
-	std::vector<Dependency> m_dependency;
+	std::vector<PluginSpecDependency> m_dependency;
 	friend class PluginSpecLoader;
 };
