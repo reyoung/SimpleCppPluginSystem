@@ -26,11 +26,16 @@ public:
 	static void Initialize(int argc,char** argv,const std::string& plugin_path);
 	virtual ~PluginManager(void);
 
+	static inline PluginManager* Instance(){
+		return m_manager;
+	}
+
+	void addExitReleaseObject(Castable* obj);
 
 private:
 	static PluginManager* m_manager;
 	std::map<IPlugin* ,PluginSpec* > m_plugins;
-	std::vector<PluginSpec* > m_allspec;
+	std::vector<Castable* > m_exitReleaseObjs;
 
 	static void atexitCallBack();
 

@@ -10,13 +10,9 @@ PluginManager::PluginManager(void)
 
 PluginManager::~PluginManager(void)
 {
-	for (map<IPlugin* ,PluginSpec* >::iterator it = m_manager->m_plugins.begin();
-		it!=m_manager->m_plugins.end();++it){
-			delete it->first;
-	}
-	for (int i=0;i<m_allspec.size();++i)
+	for (int i=0;i<m_exitReleaseObjs.size();++i)
 	{
-		delete m_allspec[i];
+		delete m_exitReleaseObjs[i];
 	}
 }
 
@@ -43,7 +39,10 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 {
 	m_manager = new PluginManager();
 	vector<PluginSpec*> specs = m_manager->getAllPluginSpec(plugin_path);
-	m_manager->m_allspec = specs;
+	for (int i=0;i<specs.size();++i)
+	{
+		m_manager->addExitReleaseObject(specs[i]);
+	}
 	resolve(&specs);
 	for (int i=0;i<specs.size();++i)
 	{
@@ -52,6 +51,7 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 		{
 			continue;
 		}
+		m_manager->addExitReleaseObject(plugin);
 		plugin->initialize(argc,argv);
 		m_manager->m_plugins[plugin] = specs[i];
 	}
@@ -117,4 +117,9 @@ void PluginManager::resolve( std::vector<PluginSpec* > * toResove )
 void PluginManager::atexitCallBack()
 {
 	delete m_manager;
+}
+
+void PluginManager::addExitReleaseObject( Castable* obj )
+{
+	this->m_exitReleaseObjs.push_back(obj);
 }
