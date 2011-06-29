@@ -30,6 +30,10 @@ public:
 private:
 	static PluginManager* m_manager;
 	std::map<IPlugin* ,PluginSpec* > m_plugins;
+	std::vector<PluginSpec* > m_allspec;
+
+	static void atexitCallBack();
+
 //public://! For Test Only
 
 	//! 获得一个目录下所有的PluginSpec，包括子目录

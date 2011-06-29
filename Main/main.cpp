@@ -28,5 +28,6 @@ void testSpec(int argc,char** argv){
 
 
 int main(int argc,char** argv){
+	PluginManager::Initialize(argc,argv,"plugins");
 	return 0;
 }

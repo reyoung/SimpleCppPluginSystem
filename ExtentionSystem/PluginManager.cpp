@@ -10,6 +10,14 @@ PluginManager::PluginManager(void)
 
 PluginManager::~PluginManager(void)
 {
+	for (map<IPlugin* ,PluginSpec* >::iterator it = m_manager->m_plugins.begin();
+		it!=m_manager->m_plugins.end();++it){
+			delete it->first;
+	}
+	for (int i=0;i<m_allspec.size();++i)
+	{
+		delete m_allspec[i];
+	}
 }
 
 std::vector<PluginSpec*> PluginManager::getAllPluginSpec( const std::string& plugin_path )
@@ -35,6 +43,24 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 {
 	m_manager = new PluginManager();
 	vector<PluginSpec*> specs = m_manager->getAllPluginSpec(plugin_path);
+	m_manager->m_allspec = specs;
+	resolve(&specs);
+	for (int i=0;i<specs.size();++i)
+	{
+		IPlugin* plugin = specs[i]->getPlugin();
+		if (plugin==NULL)
+		{
+			continue;
+		}
+		plugin->initialize(argc,argv);
+		m_manager->m_plugins[plugin] = specs[i];
+	}
+	for (map<IPlugin* ,PluginSpec* >::iterator it = m_manager->m_plugins.begin();
+		it!=m_manager->m_plugins.end();++it)
+	{
+		it->first->initialized();
+	}
+	atexit(atexitCallBack);
 }
 
 static bool isNotIn(const vector<PluginSpec*>& vec,const PluginSpecDependency& dep ){
@@ -86,4 +112,9 @@ void PluginManager::resolve( std::vector<PluginSpec* > * toResove )
 		}
 	}
 	specs = retv;
+}
+
+void PluginManager::atexitCallBack()
+{
+	delete m_manager;
 }
