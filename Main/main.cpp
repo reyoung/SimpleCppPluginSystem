@@ -13,7 +13,7 @@ int main(int argc,char** argv){
 	param["browse"]=string("www.baidu.com");
 	param["exec"]=string("C:\\Program Files\\Windows Media Player\\wmplayer.exe");
 	map<string,Variant> subparam;
-	subparam["prefix"]=string("http://www.baidu.com/s?wd=");
+	subparam["prefix"]=string("baidu");
 	subparam["keyword"]=string("tjureyoung");
 	param["netsearch"]=subparam;
 

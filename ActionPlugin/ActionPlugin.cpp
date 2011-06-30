@@ -58,7 +58,12 @@ void ActionPlugin::invoke( std::map<std::string,Variant>* inout)
 					string prefix = p["prefix"].toString(&ok);
 					if (ok)
 					{
-						ok = netsearch(prefix,keyword);
+						if (prefix == "baidu")
+						{
+							netsearch("http://www.baidu.com/s?wd=",keyword);
+						}else{
+							ok = netsearch(prefix,keyword);
+						}
 					}
 				}
 			}
