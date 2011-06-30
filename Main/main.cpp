@@ -11,6 +11,7 @@ int main(int argc,char** argv){
 	
 	map<string,Variant> param;//! 调用函数
 	param["browse"]=string("www.baidu.com");
+	param["exec"]=string("C:\\Program Files\\Windows Media Player\\wmplayer.exe");
 	PluginManager::Instance()->invoke("ActionPlugin",&param);
 
 	cout<<"Invoke Result "<<param["ok"].toBool()<<endl; //! 调用是否成功
