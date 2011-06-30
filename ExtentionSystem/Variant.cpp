@@ -69,10 +69,10 @@ Variant::Variant( const std::map<std::string,Variant>& mp )
 	this->operator =(mp);
 }
 
-//Variant::Variant( const bool& b )
-//{
-//	this->operator =(b);
-//}
+Variant::Variant( const bool& b )
+{
+	this->operator =(b);
+}
 
 Variant::Variant( const char* str )
 {

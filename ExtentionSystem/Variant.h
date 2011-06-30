@@ -75,7 +75,7 @@ public:
 	Variant& operator = (const std::map<std::string,Variant>& mp);
 	std::map<std::string,Variant> toMap(bool* ok=0)const;
 
-	//explicit Variant(const bool& b);
+	explicit Variant(const bool& b);
 	Variant& operator = (const bool& b);
 	bool toBool(bool* ok=0,bool default_bool= false);
 
