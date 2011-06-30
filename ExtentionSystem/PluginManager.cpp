@@ -11,7 +11,7 @@ PluginManager::PluginManager(void)
 
 PluginManager::~PluginManager(void)
 {
-	for (int i=0;i<m_exitReleaseObjs.size();++i)
+	for (size_t i=0;i<m_exitReleaseObjs.size();++i)
 	{
 		delete m_exitReleaseObjs[i];
 	}
@@ -25,7 +25,7 @@ std::vector<PluginSpec*> PluginManager::getAllPluginSpec( const std::string& plu
 	std::vector<PluginSpec*> retv;
 	string pattern = plugin_path+"\\*.ini";
 	system("cd");
-	if ((handle=_findfirst(pattern.c_str(),&fileInfo))!=-1);
+	if ((handle=_findfirst(pattern.c_str(),&fileInfo))!=-1)
 	{
 		do
 		{
@@ -42,12 +42,12 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 {
 	m_manager = new PluginManager();
 	vector<PluginSpec*> specs = m_manager->getAllPluginSpec(plugin_path);
-	for (int i=0;i<specs.size();++i)
+	for (size_t i=0;i<specs.size();++i)
 	{
 		m_manager->addExitReleaseObject(specs[i]);
 	}
 	resolve(&specs);
-	for (int i=0;i<specs.size();++i)
+	for (size_t i=0;i<specs.size();++i)
 	{
 		IPlugin* plugin = specs[i]->getPlugin();
 		if (plugin==NULL)
@@ -68,7 +68,7 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 }
 
 static bool isNotIn(const vector<PluginSpec*>& vec,const PluginSpecDependency& dep ){
-	for(int i=0;i<vec.size();++i){
+	for(size_t i=0;i<vec.size();++i){
 		if (vec[i]->name()==dep.name&&vec[i]->version()==dep.version)
 		{
 			return false;
@@ -85,7 +85,7 @@ void PluginManager::resolve( std::vector<PluginSpec* > * toResove )
 	while (retv.size()!=specs.size())
 	{
 		bool breakFlag= true;
-		for (int i = 0;i<specs.size();++i)
+		for (size_t i = 0;i<specs.size();++i)
 		{
 			PluginSpecDependency depen;
 			depen.name = specs[i]->name();
@@ -96,7 +96,7 @@ void PluginManager::resolve( std::vector<PluginSpec* > * toResove )
 			}
 			vector<PluginSpecDependency> deps = specs[i]->dependency();
 			bool flag = true;
-			for (int j=0;j<deps.size();++j)
+			for (size_t j=0;j<deps.size();++j)
 			{
 				if (isNotIn(retv,deps[j]))
 				{
