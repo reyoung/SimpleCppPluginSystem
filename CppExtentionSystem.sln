@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PluginExample", "PluginExam
 		{E6D6D914-B292-4CCE-8F80-2BBD138B658D} = {E6D6D914-B292-4CCE-8F80-2BBD138B658D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ActionPlugin", "ActionPlugin\ActionPlugin.vcproj", "{7AFB3721-778D-48C9-84E1-671BB758FDD4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E6D6D914-B292-4CCE-8F80-2BBD138B658D} = {E6D6D914-B292-4CCE-8F80-2BBD138B658D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +36,10 @@ Global
 		{370E2338-916B-481C-8FF1-5B851381F8C4}.Debug|Win32.Build.0 = Debug|Win32
 		{370E2338-916B-481C-8FF1-5B851381F8C4}.Release|Win32.ActiveCfg = Release|Win32
 		{370E2338-916B-481C-8FF1-5B851381F8C4}.Release|Win32.Build.0 = Release|Win32
+		{7AFB3721-778D-48C9-84E1-671BB758FDD4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7AFB3721-778D-48C9-84E1-671BB758FDD4}.Debug|Win32.Build.0 = Debug|Win32
+		{7AFB3721-778D-48C9-84E1-671BB758FDD4}.Release|Win32.ActiveCfg = Release|Win32
+		{7AFB3721-778D-48C9-84E1-671BB758FDD4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

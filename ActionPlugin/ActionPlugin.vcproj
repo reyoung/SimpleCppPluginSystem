@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="ExtentionSystem"
-	ProjectGUID="{E6D6D914-B292-4CCE-8F80-2BBD138B658D}"
-	RootNamespace="ExtentionSystem"
+	Name="ActionPlugin"
+	ProjectGUID="{7AFB3721-778D-48C9-84E1-671BB758FDD4}"
+	RootNamespace="ActionPlugin"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\plugins"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
@@ -41,7 +41,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;EXTENTIONSYSTEM_EXPORTS"
+				AdditionalIncludeDirectories="$(SolutionDir)"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ACTIONPLUGIN_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -85,6 +86,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy ActionPlugin.ini $(SolutionDir)\Debug\plugins /y"
 			/>
 		</Configuration>
 		<Configuration
@@ -114,7 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;EXTENTIONSYSTEM_EXPORTS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ACTIONPLUGIN_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -171,39 +173,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Castable.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ini.c"
-				>
-			</File>
-			<File
-				RelativePath=".\IPlugin.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLoader.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLoader_Win32.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginManager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginSpec.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginSpecLoader.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Variant.cpp"
+				RelativePath=".\ActionPlugin.cpp"
 				>
 			</File>
 		</Filter>
@@ -213,51 +183,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\all.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Castable.h"
+				RelativePath=".\ActionPlugin.h"
 				>
 			</File>
 			<File
 				RelativePath=".\global.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ini.h"
-				>
-			</File>
-			<File
-				RelativePath=".\IPlugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Plugin.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLoader.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLoader_Win32.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginSpec.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginSpecLoader.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Variant.h"
 				>
 			</File>
 		</Filter>
@@ -267,6 +197,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath=".\ActionPlugin.ini"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
