@@ -5,36 +5,16 @@
 #include <ExtentionSystem/Variant.h>
 #include <cassert>
 using namespace std;
-void testSpec(int argc,char** argv){
-	PluginSpec spec("plugins\\PluginExample.ini");
-	cout<<spec.name()<<endl;
-	cout<<spec.version()<<endl;
-	cout<<spec.vender()<<endl;
-	cout<<spec.license()<<endl;
-	vector<PluginSpecDependency> dep = spec.dependency();
-	for (int i=0;i<dep.size();++i)
-	{
-		cout<<dep[i].name<<" "<<dep[i].version<<endl;
-	}
-	cout<<spec.isEnabled()<<endl;
-
-	IPlugin* plugin = spec.getPlugin();
-	if (plugin)
-	{
-		plugin->initialize(argc,argv);
-	}
-	delete plugin;
-	system("pause");
-}
-
 
 int main(int argc,char** argv){
-	PluginManager::Initialize(argc,argv,"plugins");
-	Variant v;
-	v="Hello world";
-	cout<<v.toString()<<endl;
-	v=12;
-	cout<<v.toInt()<<endl;
+	PluginManager::Initialize(argc,argv,"plugins");	//! 初始化管理器
+	
+	map<string,Variant> param;//! 调用函数
+	param["printHello"]=string("Hello world\nThis param is from outsize\n");
+	PluginManager::Instance()->invoke("PluginExample",&param);
+
+	cout<<"Invoke Result "<<param["ok"].toBool()<<endl; //! 调用是否成功
+
 	system("pause");
 	return 0;
 }

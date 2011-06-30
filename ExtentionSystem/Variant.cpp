@@ -69,6 +69,11 @@ Variant::Variant( const std::map<std::string,Variant>& mp )
 	this->operator =(mp);
 }
 
+Variant::Variant( const bool& b )
+{
+	this->operator =(b);
+}
+
 Variant::~Variant(void)
 {
 	CheckAndFreeComplex();
@@ -159,6 +164,14 @@ Variant& Variant::operator=( const std::map<std::string,Variant>& mp )
 	CheckAndFreeComplex();
 	m_data.ptr = new map<string,Variant>(mp);
 	m_type = Map;
+	return *this;
+}
+
+Variant& Variant::operator=( const bool& b )
+{
+	CheckAndFreeComplex();
+	m_data.b = b;
+	m_type = Bool;
 	return *this;
 }
 
@@ -376,6 +389,24 @@ std::map<std::string,Variant> Variant::toMap( bool* ok ) const
 			*ok=false;
 		}
 		return map<string,Variant>();
+	}
+}
+
+bool Variant::toBool( bool* ok/*=0*/,bool default_bool/*= false*/ )
+{
+	if (getType()==Bool)
+	{
+		if (ok)
+		{
+			*ok=true;
+		}
+		return m_data.b;
+	}else{
+		if (ok)
+		{
+			*ok=false;
+		}
+		return default_bool;
 	}
 }
 

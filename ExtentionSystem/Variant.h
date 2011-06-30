@@ -18,11 +18,12 @@ public:
 		LongLong = 5,
 		Float = 6,
 		Double = 7,
+		Bool = 8,
 //! Complex Type (STD)
-		String = 8|ComplexType,
-		Vector = 9 |ComplexType,
-		List = 10|ComplexType,
-		Map = 11|ComplexType,
+		String = 9|ComplexType,
+		Vector = 10 |ComplexType,
+		List = 11|ComplexType,
+		Map = 12|ComplexType,
 	};
 
 	Variant(void);
@@ -70,7 +71,11 @@ public:
 
 	Variant(const std::map<std::string,Variant>& mp);
 	Variant& operator = (const std::map<std::string,Variant>& mp);
-	std::map<std::string,Variant> toMap(bool* ok)const;
+	std::map<std::string,Variant> toMap(bool* ok=0)const;
+
+	Variant(const bool& b);
+	Variant& operator = (const bool& b);
+	bool toBool(bool* ok=0,bool default_bool= false);
 
 	inline Type getType()const{
 		return m_type;
@@ -93,6 +98,7 @@ private:
 		long long ll;
 		float f;
 		double d;
+		bool b;
 		void* ptr;
 	};
 	Type m_type;

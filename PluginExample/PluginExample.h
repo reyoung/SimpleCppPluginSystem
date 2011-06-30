@@ -9,4 +9,6 @@ public:
 	virtual ~PluginExample(void);
 	virtual bool initialize(int argc,char** argv);
 	void printHello(const std::string& str)const;
+
+	virtual void invoke(std::map<std::string,Variant>*  inout);
 };

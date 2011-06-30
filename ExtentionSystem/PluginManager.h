@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include "Castable.h"
+#include "Variant.h"
 class IPlugin;
 class PluginSpec;
 
@@ -41,6 +42,12 @@ public:
 	}
 
 	void addExitReleaseObject(Castable* obj);
+		
+	inline static void Invoke(const std::string& name,std::map<std::string,Variant>* inout){
+		Instance()->invoke(name,inout);
+	}
+
+	void invoke(const std::string& name,std::map<std::string,Variant>* inout);
 
 private:
 	static PluginManager* m_manager;
@@ -50,6 +57,9 @@ private:
 	static void atexitCallBack();
 
 //public://! For Test Only
+
+	IPlugin* getPlugin(const std::string& name);
+
 
 	//! 获得一个目录下所有的PluginSpec，包括子目录
 	//! \method   getAllPluginSpec

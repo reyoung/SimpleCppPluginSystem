@@ -2,6 +2,8 @@
 #include "Castable.h"
 #include <string>
 #include "PluginManager.h"
+#include "Variant.h"
+#include <map>
 
 /**
 *	\abstract 所有Plugin的基类
@@ -12,6 +14,9 @@ class ExtentionSystem_DLL_API IPlugin:public Castable
 public:
 	IPlugin(void);
 	
+	virtual void invoke(std::map<std::string,Variant>* )=0;
+
+
 	//! 初始化Plugin
 	//! \method   initialize
 	//! \return   bool	是否成功

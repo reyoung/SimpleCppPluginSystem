@@ -127,3 +127,27 @@ void PluginManager::addExitReleaseObject( Castable* obj )
 {
 	this->m_exitReleaseObjs.push_back(obj);
 }
+
+void PluginManager::invoke( const std::string& name,std::map<std::string,Variant>* inout )
+{
+	IPlugin* plugin = getPlugin(name);
+	if (plugin)
+	{
+		plugin->invoke(inout);
+	}else{
+		(*inout)["ok"]=false;
+	}
+}
+
+IPlugin* PluginManager::getPlugin( const std::string& name )
+{
+	for (map<IPlugin*,PluginSpec*>::iterator it = this->m_plugins.begin();
+		it!=this->m_plugins.end();++it)
+	{
+		if (it->second->name()==name)
+		{
+			return it->first;
+		}
+	}
+	return 0;
+}
