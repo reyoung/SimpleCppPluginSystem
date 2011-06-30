@@ -1,7 +1,7 @@
 #pragma once
 #include "Castable.h"
 #include <string>
-class PluginSpec;
+#include "PluginManager.h"
 
 /**
 *	\abstract 所有Plugin的基类
@@ -29,8 +29,10 @@ public:
 	//! \method   getSpec
 	//! \return   PluginSpec*
 	inline PluginSpec* getSpec()const{
-		return 0;
+		return m_pm->findSpec(this);
 	}
 	virtual ~IPlugin(void);
 private:
+	PluginManager* m_pm;
+	friend class PluginManager;
 };

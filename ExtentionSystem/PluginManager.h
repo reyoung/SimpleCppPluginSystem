@@ -30,6 +30,16 @@ public:
 		return m_manager;
 	}
 
+	inline PluginSpec* findSpec(const IPlugin* plugin){
+		IPlugin* p = const_cast<IPlugin*>(plugin);
+		if (m_plugins.find(p)!=m_plugins.end())
+		{
+			return 0;
+		}else{
+			return m_plugins[p];
+		}
+	}
+
 	void addExitReleaseObject(Castable* obj);
 
 private:

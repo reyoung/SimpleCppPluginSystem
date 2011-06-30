@@ -2,6 +2,7 @@
 #include <ExtentionSystem/IPlugin.h>
 #include <ExtentionSystem/PluginSpec.h>
 #include <ExtentionSystem/PluginManager.h>
+#include <ExtentionSystem/Variant.h>
 #include <cassert>
 using namespace std;
 void testSpec(int argc,char** argv){
@@ -29,5 +30,11 @@ void testSpec(int argc,char** argv){
 
 int main(int argc,char** argv){
 	PluginManager::Initialize(argc,argv,"plugins");
+	Variant v;
+	v="Hello world";
+	cout<<v.toString()<<endl;
+	v=12;
+	cout<<v.toInt()<<endl;
+	system("pause");
 	return 0;
 }

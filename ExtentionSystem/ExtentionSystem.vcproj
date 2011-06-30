@@ -202,6 +202,10 @@
 				RelativePath=".\PluginSpecLoader.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Variant.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Í·ÎÄ¼þ"
@@ -246,6 +250,10 @@
 			</File>
 			<File
 				RelativePath=".\PluginSpecLoader.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Variant.h"
 				>
 			</File>
 		</Filter>

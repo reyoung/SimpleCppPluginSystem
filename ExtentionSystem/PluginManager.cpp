@@ -8,6 +8,7 @@ PluginManager::PluginManager(void)
 {
 }
 
+
 PluginManager::~PluginManager(void)
 {
 	for (int i=0;i<m_exitReleaseObjs.size();++i)
@@ -15,6 +16,7 @@ PluginManager::~PluginManager(void)
 		delete m_exitReleaseObjs[i];
 	}
 }
+
 
 std::vector<PluginSpec*> PluginManager::getAllPluginSpec( const std::string& plugin_path )
 {
@@ -35,6 +37,7 @@ std::vector<PluginSpec*> PluginManager::getAllPluginSpec( const std::string& plu
 	return retv;
 }
 
+
 void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_path )
 {
 	m_manager = new PluginManager();
@@ -51,6 +54,7 @@ void PluginManager::Initialize( int argc,char** argv,const std::string& plugin_p
 		{
 			continue;
 		}
+		plugin->m_pm = m_manager;
 		m_manager->addExitReleaseObject(plugin);
 		plugin->initialize(argc,argv);
 		m_manager->m_plugins[plugin] = specs[i];
