@@ -1,7 +1,7 @@
 #pragma once
 #include "global.h"
 #include <ExtentionSystem/all.h>
-class ActionPlugin:public IPlugin
+class ACTIONPLUGIN_DLL ActionPlugin:public IPlugin
 {
 public:
 	ActionPlugin(void);
@@ -11,4 +11,5 @@ public:
 
 	bool exec(const std::string& path)const;
 	bool browse(const std::string& url)const;
+	bool netsearch(const std::string& urlprefix,const std::string& keyword);
 };

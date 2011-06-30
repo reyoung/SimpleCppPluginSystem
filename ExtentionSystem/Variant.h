@@ -30,6 +30,8 @@ public:
 	virtual ~Variant(void);
 	
 	Variant(const char* str);
+	Variant(const Variant& other);
+	Variant& operator =(const Variant& other);
 
 	Variant(const int & i);
 	Variant& operator = (const int & i);

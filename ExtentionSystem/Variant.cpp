@@ -79,6 +79,11 @@ Variant::Variant( const char* str )
 	this->operator =(string(str));
 }
 
+Variant::Variant( const Variant& other )
+{
+	this->operator =(other);
+}
+
 Variant::~Variant(void)
 {
 	CheckAndFreeComplex();
@@ -177,6 +182,32 @@ Variant& Variant::operator=( const bool& b )
 	CheckAndFreeComplex();
 	m_data.b = b;
 	m_type = Bool;
+	return *this;
+}
+
+Variant& Variant::operator=( const Variant& other )
+{
+	m_type=Invalid;
+	if (other.isComplexType())
+	{
+		switch(other.m_type){
+			case String:
+				this->operator =(other.toString());
+				break;
+			case Vector:
+				this->operator =(other.toVector());
+				break;
+			case Map:
+				this->operator =(other.toMap());
+				break;
+			case List:
+				this->operator =(other.toList());
+				break;
+		}
+	}else{
+			m_data = other.m_data;
+	}
+	m_type  = other.m_type;
 	return *this;
 }
 

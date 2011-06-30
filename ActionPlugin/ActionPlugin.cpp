@@ -45,6 +45,28 @@ void ActionPlugin::invoke( std::map<std::string,Variant>* inout)
 			}
 		}
 	}
+	if (retv.find("netsearch")!=retv.end())
+	{
+		map<string,Variant> p = retv["netsearch"].toMap(&ok);
+		if (ok)
+		{
+			if (p.find("keyword")!=p.end()&&p.find("prefix")!=p.end())
+			{
+				string keyword = p["keyword"].toString(&ok);
+				if (ok)
+				{
+					string prefix = p["prefix"].toString(&ok);
+					if (ok)
+					{
+						ok = netsearch(prefix,keyword);
+					}
+				}
+			}
+			else{
+				ok=false;
+			}
+		}
+	}
 
 	retv["ok"]=ok;
 	retv["okcount"]=okcount;
@@ -116,6 +138,11 @@ bool ActionPlugin::browse( const std::string& url ) const
 	RegCloseKey(hSubKey);
 	RegCloseKey(hkRoot);
 	return true;
+}
+
+bool ActionPlugin::netsearch( const std::string& urlprefix,const std::string& keyword )
+{
+	return browse(urlprefix+keyword);
 }
 
 
