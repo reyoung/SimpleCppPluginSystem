@@ -17,6 +17,10 @@ public:
 	virtual void invoke(std::map<std::string,Variant>* )=0;
 
 
+	void emitSignal(const std::map<std::string,Variant>& sig );
+
+
+
 	//! 初始化Plugin
 	//! \method   initialize
 	//! \return   bool	是否成功

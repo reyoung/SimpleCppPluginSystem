@@ -25,6 +25,9 @@ public:
 	//! \param    char * * argv
 	//! \param    const std::string & plugin_path pluginµÄÄ¿Â¼
 	static void Initialize(int argc,char** argv,const std::string& plugin_path);
+	
+	void emitSignal(const std::map<std::string,Variant>& sig);
+	
 	virtual ~PluginManager(void);
 
 	static inline PluginManager* Instance(){

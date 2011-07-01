@@ -151,3 +151,13 @@ IPlugin* PluginManager::getPlugin( const std::string& name )
 	}
 	return 0;
 }
+
+void PluginManager::emitSignal( const std::map<std::string,Variant>& sig )
+{
+	for (map<IPlugin*,PluginSpec*>::iterator it = this->m_plugins.begin();
+		it!=this->m_plugins.end();++it)
+	{
+		std::map<std::string,Variant> temp = sig;
+		it->first->invoke(&temp);
+	}
+}
