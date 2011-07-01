@@ -60,15 +60,35 @@ void ActionPlugin::invoke( std::map<std::string,Variant>* inout)
 					{
 						if (prefix == "baidu")
 						{
-							netsearch("http://www.baidu.com/s?wd=",keyword);
-						}else{
+							ok =netsearch("http://www.baidu.com/s?wd=",keyword);
+						}else if (prefix=="google")
+						{
+							ok = netsearch("http://www.google.com.hk/#q=",keyword);
+						}
+						else{
 							ok = netsearch(prefix,keyword);
+						}
+						if (ok)
+						{
+							++okcount;
 						}
 					}
 				}
 			}
 			else{
 				ok=false;
+			}
+		}
+	}
+	if (retv.find("explorer")!=retv.end())
+	{
+		string path = retv["explorer"].toString(&ok);
+		if (ok)
+		{
+			ok=explorer(path);
+			if (ok)
+			{
+				++okcount;
 			}
 		}
 	}
@@ -148,6 +168,13 @@ bool ActionPlugin::browse( const std::string& url ) const
 bool ActionPlugin::netsearch( const std::string& urlprefix,const std::string& keyword )
 {
 	return browse(urlprefix+keyword);
+}
+
+bool ActionPlugin::explorer( const std::string& path ) const
+{
+	string cmd = "explorer ";
+	int retv = system((cmd+path).c_str());
+	return retv==1;
 }
 
 

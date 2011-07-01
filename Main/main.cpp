@@ -13,15 +13,15 @@ int main(int argc,char** argv){
 	param["browse"]=string("www.baidu.com");
 	param["exec"]=string("C:\\Program Files\\Windows Media Player\\wmplayer.exe");
 	map<string,Variant> subparam;
-	subparam["prefix"]=string("baidu");
+	subparam["prefix"]=string("google");
 	subparam["keyword"]=string("tjureyoung");
 	param["netsearch"]=subparam;
+	param["explorer"]=string("C:\\");
 
 	PluginManager::Instance()->invoke("ActionPlugin",&param);
 
 	cout<<"Invoke Result "<<param["ok"].toBool()<<endl; //! 调用是否成功
 	cout<<"Success Invoke Count = "<<param["okcount"].toInt()<<endl;
-
 	system("pause");
 	return 0;
 }

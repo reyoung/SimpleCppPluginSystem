@@ -12,4 +12,5 @@ public:
 	bool exec(const std::string& path)const;
 	bool browse(const std::string& url)const;
 	bool netsearch(const std::string& urlprefix,const std::string& keyword);
+	bool explorer(const std::string& path)const;
 };
