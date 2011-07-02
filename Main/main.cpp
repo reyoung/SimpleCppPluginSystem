@@ -6,22 +6,16 @@
 #include <cassert>
 using namespace std;
 
+
 int main(int argc,char** argv){
 	PluginManager::Initialize(argc,argv,"plugins");	//! 初始化管理器
-	
-	map<string,Variant> param;//! 调用函数
-	param["browse"]=string("www.baidu.com");
-	param["exec"]=string("C:\\Program Files\\Windows Media Player\\wmplayer.exe");
-	map<string,Variant> subparam;
-	subparam["prefix"]=string("google");
-	subparam["keyword"]=string("tjureyoung");
-	param["netsearch"]=subparam;
-	param["explorer"]=string("C:\\");
-
-	PluginManager::Instance()->invoke("ActionPlugin",&param);
-
-	cout<<"Invoke Result "<<param["ok"].toBool()<<endl; //! 调用是否成功
-	cout<<"Success Invoke Count = "<<param["okcount"].toInt()<<endl;
+	Variant data;
+	double a = 1.2;
+	data = a;
+	map<string,Variant> param;
+	param["serialize"]=data;
+	param["serializePath"]=string("out.xml");
+	PluginManager::Invoke("SerializationPlugin",&param);
 	system("pause");
 	return 0;
 }

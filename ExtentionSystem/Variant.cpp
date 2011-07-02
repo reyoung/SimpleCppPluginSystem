@@ -141,7 +141,7 @@ Variant& Variant::operator=( const double& d )
 {
 	CheckAndFreeComplex();
 	m_data.d = d;
-	m_type = Float;
+	m_type = Double;
 	return *this;
 }
 
