@@ -24,6 +24,15 @@ void SerializationPlugin::invoke( std::map<std::string,Variant>* inout)
 			ok=serialize(path,temp);
 		}
 	}
+	if (retv.find("deserialize")!=retv.end())
+	{
+		string path = retv["deserialize"].toString(&ok);
+		if (ok)
+		{
+			ok = deserialize(path,retv["deserialize"]);
+		}
+	}
+	retv["ok"]=ok;
 }
 
 bool SerializationPlugin::initialize( int argc,char** argv )
@@ -109,6 +118,7 @@ static TiXmlElement* getXmlElement(const Variant& input){
 	return retv;
 }
 
+
 bool SerializationPlugin::serialize( const std::string& path,const Variant& input )
 {
 	//cout<<"Invoke Serialize"<<endl;
@@ -118,6 +128,79 @@ bool SerializationPlugin::serialize( const std::string& path,const Variant& inpu
 	doc.LinkEndChild(getXmlElement(input));
 	doc.SaveFile(path.c_str());
 	return true;
+}
+static Variant getVarient(TiXmlElement* el){
+	if (strcmp(el->Value(),"Int")==0)
+	{
+		return Variant(int(el->FirstAttribute()->IntValue()));
+	}else if (strcmp(el->Value(),"Char")==0)
+	{
+		return Variant(char(el->FirstAttribute()->IntValue()));
+	}else if (strcmp(el->Value(),"Short")==0)
+	{
+		return Variant(short(el->FirstAttribute()->IntValue()));
+	}else if (strcmp(el->Value(),"Long")==0)
+	{
+		return Variant(long(el->FirstAttribute()->IntValue()));
+	}else if (strcmp(el->Value(),"LongLong")==0)
+	{
+		return Variant(long long(el->FirstAttribute()->IntValue()));
+	}else if (strcmp(el->Value(),"Float")==0)
+	{
+		return Variant(float(el->FirstAttribute()->DoubleValue()));
+	}else if (strcmp(el->Value(),"Double")==0)
+	{
+		return Variant(double(el->FirstAttribute()->DoubleValue()));
+	}else if(strcmp(el->Value(),"String")==0){
+		TiXmlText* node = el->FirstChild()->ToText();
+		return Variant(string(node->Value()));
+	}else if(strcmp(el->Value(),"Vector")==0){
+		TiXmlElement* sub = el->FirstChildElement();
+		vector<Variant> ret ;
+		while (sub!=0)
+		{
+			ret.push_back(getVarient(sub));
+			sub=sub->NextSiblingElement();
+		}
+		return ret;
+	}else if (strcmp(el->Value(),"List")==0)
+	{
+		TiXmlElement* sub = el->FirstChildElement();
+		list<Variant> ret ;
+		while (sub!=0)
+		{
+			ret.push_back(getVarient(sub));
+			sub=sub->NextSiblingElement();
+		}
+		return ret;
+	}else if(strcmp(el->Value(),"Map")==0){
+		map<string,Variant> ret;
+		TiXmlElement* sub = el->FirstChildElement();
+		while (sub!=0)
+		{
+			string lab(sub->Value());
+			ret[lab]=getVarient(sub->FirstChildElement());
+			sub=sub->NextSiblingElement();
+		}
+		return ret;
+	}else{
+		return Variant();
+	}
+}
+
+bool SerializationPlugin::deserialize( const std::string& path,Variant& v )
+{
+	cout<<"deserialize "<<path<<endl;
+	TiXmlDocument doc(path.c_str());
+	bool ok = doc.LoadFile(path.c_str());
+	if (ok)
+	{
+		TiXmlElement* el = doc.FirstChildElement();
+		v = getVarient(el);
+		return true;
+	}else{
+		return false;
+	}
 }
 
 DECLARE_PLUGIN(SerializationPlugin);

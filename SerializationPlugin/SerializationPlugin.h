@@ -9,6 +9,7 @@ public:
 	virtual bool initialize(int argc,char** argv);
 
 	bool serialize(const std::string& path,const Variant& input);
+	bool deserialize(const std::string& path,Variant& v);
 
 	virtual ~SerializationPlugin(void);
 };

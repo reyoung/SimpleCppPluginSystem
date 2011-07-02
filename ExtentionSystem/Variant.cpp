@@ -16,71 +16,85 @@ Variant::Variant(void)
 
 Variant::Variant( const int & i )
 {
+	m_type = Invalid;
 	this->operator =(i);
 }
 
 Variant::Variant( const char& c )
 {
+	m_type=Invalid;
 	this->operator =(c);
 }
 
 Variant::Variant( const short& s )
 {
+	m_type=Invalid;
 	this->operator =(s);
 }
 
 Variant::Variant( const long& l )
 {
+	m_type=Invalid;
 	this->operator =(l);
 }
 
 Variant::Variant( const long long & ll )
 {
+	m_type=Invalid;
 	this->operator =(ll);
 }
 
 Variant::Variant( const float & f )
 {
+	m_type=Invalid;
 	this->operator =(f);
 }
 
 Variant::Variant( const double& d )
 {
+	m_type=Invalid;
 	this->operator =(d);
 }
 
 Variant::Variant( const std::string& str )
 {
+	m_type=Invalid;
 	this->operator =(str);
 }
 
 Variant::Variant( const std::vector<Variant>& vec )
 {
+	m_type=Invalid;
 	this->operator =(vec);
 }
 
 Variant::Variant( const std::list<Variant>& li )
 {
+	m_type=Invalid;
 	this->operator =(li);
 }
 
 Variant::Variant( const std::map<std::string,Variant>& mp )
 {
+	m_type=Invalid;
 	this->operator =(mp);
 }
 
 Variant::Variant( const bool& b )
 {
+	m_type=Invalid;
 	this->operator =(b);
 }
 
 Variant::Variant( const char* str )
 {
+	m_type=Invalid;
 	this->operator =(string(str));
 }
 
 Variant::Variant( const Variant& other )
 {
+	m_type=Invalid;
 	this->operator =(other);
 }
 

@@ -15,13 +15,17 @@ int main(int argc,char** argv){
 	vec.push_back(1);
 	vec.push_back(string("2"));
 	vec.push_back(3.3);
-	m["Vector"]=vec;
+	m["Array"]=vec;
 	m["T2"]=10;
 	data =m;
 	map<string,Variant> param;
 	param["serialize"]=data;
 	param["serializePath"]=string("out.xml");
 	PluginManager::Invoke("SerializationPlugin",&param);
+	param.clear();
+	param["deserialize"]=string("out.xml");
+	PluginManager::Invoke("SerializationPlugin",&param);
+	cout<<param["deserialize"].toMap().size()<<endl;
 	system("pause");
 	return 0;
 }
