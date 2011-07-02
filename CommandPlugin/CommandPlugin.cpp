@@ -1,6 +1,6 @@
 #include "CommandPlugin.h"
 #include <iostream>
-#include "CommandSet.h"
+#include "CommandPool.h"
 using namespace std;
 CommandPlugin::CommandPlugin(void)
 {
@@ -30,9 +30,9 @@ void CommandPlugin::initialized()
 	map<string,Variant> param;
 	param["deserialize"] = m_file;
 	PluginManager::Invoke("SerializationPlugin",&param);
-	CommandSet::cmdset = new CommandSet();
-	CommandSet::Instance()->m_data = param["deserialize"];
-	CommandSet::Instance()->pack();
+	CommandPool::cmdset = new CommandPool();
+	CommandPool::Instance()->m_data = param["deserialize"];
+	CommandPool::Instance()->pack();
 }
 
 std::string CommandPlugin::getCMDConfigFileName() const

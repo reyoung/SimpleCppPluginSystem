@@ -1,21 +1,22 @@
-#include "CommandSet.h"
+#include "CommandPool.h"
+#include "KeyCommandSet.h"
 using namespace std;
-CommandSet* CommandSet::cmdset = 0;
-CommandSet::CommandSet(void)
+CommandPool* CommandPool::cmdset = 0;
+CommandPool::CommandPool(void)
 {
 	atexit(atexit_callback);
 }
 
-CommandSet::~CommandSet(void)
+CommandPool::~CommandPool(void)
 {
 }
 
-CommandSet* CommandSet::Instance()
+CommandPool* CommandPool::Instance()
 {
 	return cmdset;
 }
 
-void CommandSet::atexit_callback()
+void CommandPool::atexit_callback()
 {
 	map<string,Variant> param;
 	map<string,Variant> param2;
@@ -30,7 +31,7 @@ void CommandSet::atexit_callback()
 	}
 }
 
-void CommandSet::pack()
+void CommandPool::pack()
 {
 	if (m_data.getType()!=Variant::Map)
 	{
@@ -41,7 +42,14 @@ void CommandSet::pack()
 	}
 }
 
-size_t CommandSet::typeCount() const
+size_t CommandPool::typeCount() const
 {
 	return m_data.toMap().size();
+}
+
+KeyCommandSet CommandPool::getKeyCommandSet()
+{
+	KeyCommandSet set;
+	set.data = &(*m_data.mapPtr())["KeyCommand"];
+	return set;
 }

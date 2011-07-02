@@ -1,6 +1,7 @@
 #include "PluginMain.h"
 #include <iostream>
-#include <CommandPlugin/CommandSet.h>
+#include <CommandPlugin/CommandPool.h>
+#include <CommandPlugin/KeyCommandSet.h>
 using namespace std;
 
 
@@ -31,7 +32,12 @@ bool PluginMain::initialize( int argc,char** argv )
 
 void PluginMain::exec()
 {
-	cout<<"Command Type Count: "<<CommandSet::Instance()->typeCount()<<endl;
+	cout<<"Command Type Count: "<<CommandPool::Instance()->typeCount()<<endl;
+	KeyCommandSet kset = CommandPool::Instance()->getKeyCommandSet();
+	cout<<"Key Set Size: "<<kset.size()<<endl;
+	kset.newExeCommand("ie","C:\\Program Files\\Internet Explorer\\iexplore.exe");
+	KeyCommand kcmd = kset.findCommand("ie");
+	kcmd.perform();
 }
 
 DECLARE_PLUGIN(PluginMain);

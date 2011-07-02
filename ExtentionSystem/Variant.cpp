@@ -460,3 +460,13 @@ bool Variant::toBool( bool* ok/*=0*/,bool default_bool/*= false*/ )const
 	}
 }
 
+std::map<std::string,Variant>* Variant::mapPtr() const
+{
+	if (getType()==Variant::Map)
+	{
+		return (std::map<std::string,Variant>*)m_data.ptr;
+	}else{
+		return 0;
+	}
+}
+

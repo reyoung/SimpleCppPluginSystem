@@ -177,7 +177,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\CommandSet.cpp"
+				RelativePath=".\CommandPool.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ICommand.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ICommandSet.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\KeyCommand.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\KeyCommandSet.cpp"
 				>
 			</File>
 		</Filter>
@@ -191,11 +207,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\CommandSet.h"
+				RelativePath=".\CommandPool.h"
 				>
 			</File>
 			<File
 				RelativePath=".\global.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ICommand.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ICommandSet.h"
+				>
+			</File>
+			<File
+				RelativePath=".\KeyCommand.h"
+				>
+			</File>
+			<File
+				RelativePath=".\KeyCommandSet.h"
 				>
 			</File>
 		</Filter>

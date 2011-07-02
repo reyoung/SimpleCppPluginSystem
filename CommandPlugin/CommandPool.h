@@ -1,18 +1,19 @@
 #pragma once
 #include "global.h"
 #include <ExtentionSystem/all.h>
-class COMMANDPLUGIN_API CommandSet:public Castable
+class KeyCommandSet;
+class COMMANDPLUGIN_API CommandPool:public Castable
 {
 
-	CommandSet(void);
+	CommandPool(void);
 public:
-	static CommandSet* Instance();
+	static CommandPool* Instance();
 	size_t typeCount()const;
-
-	virtual ~CommandSet(void);
+	KeyCommandSet getKeyCommandSet();
+	virtual ~CommandPool(void);
 private:
 	Variant m_data;
-	static CommandSet* cmdset;
+	static CommandPool* cmdset;
 	friend class CommandPlugin;
 	void pack();
 private:
