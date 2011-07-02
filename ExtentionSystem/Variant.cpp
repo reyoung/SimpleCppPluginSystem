@@ -428,7 +428,7 @@ std::map<std::string,Variant> Variant::toMap( bool* ok ) const
 	}
 }
 
-bool Variant::toBool( bool* ok/*=0*/,bool default_bool/*= false*/ )
+bool Variant::toBool( bool* ok/*=0*/,bool default_bool/*= false*/ )const
 {
 	if (getType()==Bool)
 	{

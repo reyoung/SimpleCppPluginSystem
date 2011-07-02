@@ -63,6 +63,48 @@ static TiXmlElement* getXmlElement(const Variant& input){
 			retv->SetValue("Double");
 			retv->SetDoubleAttribute("Value",input.toDouble());
 			break;
+		case Variant::Bool:
+			retv->SetValue("Bool");
+			retv->SetDoubleAttribute("Value",input.toBool());
+			break;
+		case Variant::String:
+			retv->SetValue("String");
+			{
+				TiXmlText* text = new TiXmlText(input.toString().c_str());
+				retv->LinkEndChild(text);
+			}
+			break;
+		case Variant::Vector:
+			retv->SetValue("Vector");
+			{
+				vector<Variant> temp = input.toVector();
+				for (size_t i=0;i<temp.size();++i)
+				{
+					retv->LinkEndChild(getXmlElement(temp[i]));
+				}
+			}
+			break;
+		case Variant::List:
+			retv->SetValue("List");
+			{
+				list<Variant> temp = input.toList();
+				for (list<Variant>::iterator it = temp.begin();it!=temp.end();++it)
+				{
+					retv->LinkEndChild(getXmlElement(*it));
+				}
+			}
+			break;
+		case Variant::Map:
+			retv->SetValue("Map");
+			{
+				map<string,Variant> temp = input.toMap();
+				for(map<string,Variant>::iterator it = temp.begin();it!=temp.end();++it){
+					TiXmlElement* el = new TiXmlElement(it->first.c_str());
+					el->LinkEndChild(getXmlElement(it->second));
+					retv->LinkEndChild(el);
+				}
+			}
+			break;
 	}
 	return retv;
 }

@@ -10,8 +10,14 @@ using namespace std;
 int main(int argc,char** argv){
 	PluginManager::Initialize(argc,argv,"plugins");	//! 初始化管理器
 	Variant data;
-	double a = 1.2;
-	data = a;
+	map<string,Variant> m;
+	list<Variant> vec;
+	vec.push_back(1);
+	vec.push_back(string("2"));
+	vec.push_back(3.3);
+	m["Vector"]=vec;
+	m["T2"]=10;
+	data =m;
 	map<string,Variant> param;
 	param["serialize"]=data;
 	param["serializePath"]=string("out.xml");

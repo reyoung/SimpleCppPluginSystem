@@ -79,7 +79,7 @@ public:
 
 	explicit Variant(const bool& b);
 	Variant& operator = (const bool& b);
-	bool toBool(bool* ok=0,bool default_bool= false);
+	bool toBool(bool* ok=0,bool default_bool= false)const;
 
 	inline Type getType()const{
 		return m_type;
