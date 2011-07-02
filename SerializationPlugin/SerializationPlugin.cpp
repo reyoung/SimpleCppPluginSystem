@@ -190,7 +190,7 @@ static Variant getVarient(TiXmlElement* el){
 
 bool SerializationPlugin::deserialize( const std::string& path,Variant& v )
 {
-	cout<<"deserialize "<<path<<endl;
+	//cout<<"deserialize "<<path<<endl;
 	TiXmlDocument doc(path.c_str());
 	bool ok = doc.LoadFile(path.c_str());
 	if (ok)
