@@ -36,8 +36,14 @@ void PluginMain::exec()
 	KeyCommandSet kset = CommandPool::Instance()->getKeyCommandSet();
 	cout<<"Key Set Size: "<<kset.size()<<endl;
 	kset.newExeCommand("ie","C:\\Program Files\\Internet Explorer\\iexplore.exe");
+	kset.newBrowseCommand("rupeng","www.rupeng.com");
+	kset.newNetsearchCommand("$lastSearch","baidu","tjureyoung");
 	KeyCommand kcmd = kset.findCommand("ie");
 	kcmd.perform();
+	KeyCommand rpcmd = kset.findCommand("rupeng");
+	rpcmd.perform();
+	KeyCommand lastsearch = kset.findCommand("$lastSearch");
+	lastsearch.perform();
 }
 
 DECLARE_PLUGIN(PluginMain);
